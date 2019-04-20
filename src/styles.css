@@ -1,0 +1,87 @@
+body {
+  background-color: beige;
+}
+
+.container {
+  text-align: center;
+  font-weight: bold;
+  /* color: white; */
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+#search-form {
+  font-size: 18px;
+  color: darkblue;
+  border-color: darkblue;
+}
+
+h1, h5 {
+  color: darkblue;
+}
+
+#searching {
+  display: none;
+  color: darkblue;
+}
+
+#nodata {
+  display: none;
+  color: red;
+  font-style: italic;
+}
+
+#error {
+  display: none;
+  color: red;
+}
+
+#doctor-info {
+  display: none;
+  color: darkblue;
+}
+
+#table-data {
+  display: none;
+}
+
+#searchSpecialty {
+  font-size: 12px;
+}
+
+.table-header {
+  background-color: darkblue;
+  color: white;
+}
+
+.btn-submit {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: darkblue;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  font-style: italic;
+}
+
+table {
+  width: 60%;
+  border: 2px solid black;
+  border-color: darkblue;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: center;
+  color: darkblue;
+}
+
+th {
+  font-size: 18px;
+  padding: 15px;
+  border: 2px solid black;
+}
+
+td {
+  font-size: 12px;
+  border: 2px solid black;
+}

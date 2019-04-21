@@ -35,11 +35,8 @@ let clearSearch = function() {
 
 let getFurnitureData = function(searchString) {
 
-  // let tableText = "";
-  // let phone = "";
-  // let website = "";
-  // let accepting = "";
-  // let table="";
+  let tableText = "";
+  let table="";
 
   let furnitureStoreSearch = new FurnitureStoreSearch();
   let promise = furnitureStoreSearch.getData();
@@ -64,51 +61,44 @@ let getFurnitureData = function(searchString) {
           priceMax = furniture.cost;
         }
       });
-
-console.log(colorArr);
-console.log(typeArr);
-console.log(priceMax);
+      $("#searchPriceMin").text('0');
+      $("#searchPriceMax").text(Math.round(priceMax));
     } else {
+      table = $('#table-data');
+      tableText = '<table id="table-rows"><thead class="table-header"><tr><th>Photo</th><th>Name</th><th>Description</th><th>Type</th><th>Available Colors</th><th>Cost</th></tr></thead>';
+      body.body.data.forEach(function(furniture) {
+        tableText += '<tr>';
+        tableText += '<td><img src="' + furniture.image_url + '"></td>';
+        tableText += '<td>' + furniture.name + '</td>' +
+                     '<td>' + furniture.description + '</td>' +
+                     '<td>' + furniture.type + '</td>' +
+                     '<td>' + furniture.colors + '</td>' +
+                     '<td>' + '$' + furniture.cost + '</td>';
 
-//     table = $('#table-data');
-//     tableText = '<table id="table-rows"><thead class="table-header"><tr><th>Photo</th><th>First Name</th><th>Last Name</th><th>Phone Number(s)</th><th>Website</th><th>Accepting Patients?</th></tr></thead>';
-//     body.body.data.forEach(function(furniture) {
-//       tableText += '<tr>';
-//       tableText += '<td><img src="' + furniture.image_url + '"></td>';
-//       tableText += '<td>' + furniture.name + '</td>' +
-//                    '<td>' + furniture.description + '</td>' +
-//                    '<td>' + furniture.type + '</td>' +
-//                    '<td>' + furniture.colors + '</td>' +
-//                    '<td>' + furniture.cost + '</td>';
+        // doctor.practices.forEach(function(practice) {
+        //   practice.phones.forEach(function(thephone) {
+        //     phone += formatPhone(thephone.number) + '<br>';
+        //   });
 
-//       doctor.practices.forEach(function(practice) {
-//         practice.phones.forEach(function(thephone) {
-//           phone += formatPhone(thephone.number) + '<br>';
-//         });
-
-//       tableText += '</tr>';
-//     });
-//     table.append(tableText);
-//     tableText += '</table>';
-//     let furnitureCount = body.body.data.length;
-//     if (furnitureCount > 0) {
-//       $("#furnitureCount").text(furnitureCount);
-//     }
-//       $("#searching").hide();
-//       $("#furniture-info").show();
-//       $("#table-data").show();
-//     } else {
-//       $("#searching").hide();
-//       $("#nodata").show();
-//     }
-//   }, function(error) {
-//     $("#searching").hide();
-//     $("#error").show();
-//     $('#error').text(`There was an error processing your request: ${error.message}`);
-//   });
-// }
-//
+        tableText += '</tr>';
+      });
+      tableText += '</table>'
+      table.append(tableText);
+      let furnitureCount = body.body.data.length;
+      if (furnitureCount > 0) {
+        $("#resultCount").text(furnitureCount);
+        $("#searching").hide();
+        $("#results").show();
+        $("#table-data").show();
+      } else {
+        $("#searching").hide();
+        $("#nodata").show();
+      }
     }
+  }, function(error) {
+    $("#searching").hide();
+    $("#error").show();
+    $('#error').text(`There was an error processing your request: ${error.message}`);
   });
 }
 

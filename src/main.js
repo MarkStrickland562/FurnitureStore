@@ -4,24 +4,15 @@ import './styles.css';
 import $ from 'jquery';
 import FurnitureStoreSearch from './../src/furniture-store-search.js';
 
-// let clearSearch = function() {
-//   $("#searchFirstName").val('');
-//   $("#searchLastName").val('');
-//   $("#searchFullName").val('');
-//   $("#searchIssue").val('');
-//   $("#searchLocation").val('');
-//   $("#searchSpecialty").val('Any Specialty');
-// }
-//
-// let formatPhone = function(phoneNumber) {
-//   if (phoneNumber.length === 10) {
-//     return '(' + phoneNumber.substring(0,3) + ') ' + phoneNumber.substring(3,6) + '-' + phoneNumber.substring(6,10);
-//   }
-//   else {
-//     return phoneNumber;
-//   }
-// }
-//
+let clearSearch = function() {
+  $("#searchName").val('');
+  $("#searchDescription").val('');
+  $("#searchType").val('');
+  $("#searchColor").val('');
+  $("#searchPriceMin").val('');
+  $("#searchPriceMax").val('');
+}
+
 // let validateSearchCriteria = function() {
 //   let searchString = "";
 //   if ($('#searchFirstName').val() != "") {
@@ -42,7 +33,7 @@ import FurnitureStoreSearch from './../src/furniture-store-search.js';
 //   return searchString;
 // }
 
-let getFurnitureData = function() {
+let getFurnitureData = function(searchString) {
 
   // let tableText = "";
   // let phone = "";
@@ -54,66 +45,57 @@ let getFurnitureData = function() {
   let promise = furnitureStoreSearch.getData();
   promise.then(function(response) {
     let body = JSON.parse(response);
-console.log('Here');
-console.log(body);
+
+    if (searchString === "Initialize") {
+      let colorArr = [];
+      let typeArr = [];
+      let priceMax = 0;
+
+      body.body.data.forEach(function(furniture) {
+        furniture.colors.forEach(function(color) {
+          if (!colorArr.includes(color.toLowerCase())) {
+            colorArr.push(color.toLowerCase());
+          }
+        });
+        if (!typeArr.includes(furniture.type.toLowerCase())) {
+          typeArr.push(furniture.type.toLowerCase());
+        }
+        if (furniture.cost > priceMax) {
+          priceMax = furniture.cost;
+        }
+      });
+
+console.log(colorArr);
+console.log(typeArr);
+console.log(priceMax);
+    } else {
+
 //     table = $('#table-data');
 //     tableText = '<table id="table-rows"><thead class="table-header"><tr><th>Photo</th><th>First Name</th><th>Last Name</th><th>Phone Number(s)</th><th>Website</th><th>Accepting Patients?</th></tr></thead>';
-//     body.data.forEach(function(doctor) {
+//     body.body.data.forEach(function(furniture) {
 //       tableText += '<tr>';
-//       if (doctor.profile.image_url != undefined) {
-//         if (doctor.profile.image_url.includes('general_doctor_male.png') ||
-//             doctor.profile.image_url.includes('general_doctor_female.png')) {
-//           tableText += '<td>No image available</td>';
-//         }
-//         else {
-//         tableText += '<td><img src="' + doctor.profile.image_url + '"></td>';
-//         }
-//       }
-//       else {
-//         tableText += '<td>No image available</td>';
-//       }
-//       tableText += '<td>' + doctor.profile.first_name + '</td>' +
-//                    '<td>' + doctor.profile.last_name + '</td>';
-//       phone = '<td>';
-//       website = '<td>';
-//       accepting = '<td>';
+//       tableText += '<td><img src="' + furniture.image_url + '"></td>';
+//       tableText += '<td>' + furniture.name + '</td>' +
+//                    '<td>' + furniture.description + '</td>' +
+//                    '<td>' + furniture.type + '</td>' +
+//                    '<td>' + furniture.colors + '</td>' +
+//                    '<td>' + furniture.cost + '</td>';
+
 //       doctor.practices.forEach(function(practice) {
 //         practice.phones.forEach(function(thephone) {
 //           phone += formatPhone(thephone.number) + '<br>';
 //         });
-//         if (practice.website != undefined) {
-//           website += '<a href="' + practice.website + '">' + practice.website + '</a>';
-//         }
-//       });
-//       if (doctor.practices[0] != undefined && doctor.practices[0].accepts_new_patients != undefined) {
-//         if (doctor.practices[0].accepts_new_patients === true) {
-//           accepting += 'Yes';
-//         } else {
-//           accepting += 'No';
-//         }
-//       } else {
-//         accepting += 'No';
-//       }
-//       phone += '</td>';
-//       website += '</td>';
-//       accepting += '</td>';
-//       tableText += phone;
-//       tableText += website;
-//       tableText += accepting;
+
 //       tableText += '</tr>';
 //     });
 //     table.append(tableText);
 //     tableText += '</table>';
-//     let doctorsCount = body.data.length;
-//     if (doctorsCount > 0) {
-//       if (doctorsCount === 100) {
-//         $("#doctorCount").text(doctorsCount + " (Note: Results are limited to 100)");
-//       }
-//       else {
-//         $("#doctorCount").text(doctorsCount);
-//       }
+//     let furnitureCount = body.body.data.length;
+//     if (furnitureCount > 0) {
+//       $("#furnitureCount").text(furnitureCount);
+//     }
 //       $("#searching").hide();
-//       $("#doctor-info").show();
+//       $("#furniture-info").show();
 //       $("#table-data").show();
 //     } else {
 //       $("#searching").hide();
@@ -126,30 +108,21 @@ console.log(body);
 //   });
 // }
 //
-// let getSpecialties = function() {
-//   let specialtyText = '<option value="Any Specialty">Any Specialty</option>';
-//   let specialties = new DoctorLookup();
-//   let promise = specialties.getSpecialties();
-//   promise.then(function(response) {
-//     let body = JSON.parse(response);
-//     body.data.forEach(function(specialty) {
-//       specialtyText += '<option value="' + specialty.name + '">' + specialty.name + '</option>';
-//     });
-//     $("#searchSpecialty").append(specialtyText);
-   });
+    }
+  });
 }
 
 $(document).ready(function() {
+  getFurnitureData("Initialize");
   $("#search-form").submit(function(event){
     event.preventDefault();
 
-    // $("#table-rows").remove();
-    // $("#doctor-info").hide();
-    // $("#searching").show();
-    // $("#nodata").hide();
+    $("#table-rows").remove();
+    $("#results").hide();
+    $("#searching").show();
+    $("#nodata").hide();
 
-    // let searchString = validateSearchCriteria();
-    // clearSearch();
     getFurnitureData();
+    clearSearch();
   });
 });

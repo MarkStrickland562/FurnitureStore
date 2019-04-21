@@ -2,6 +2,25 @@ body {
   background-color: beige;
 }
 
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+#sidebar {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 5px;
+    height: 100vh;
+    z-index: 999;
+    background: #303030;
+    color: white;
+    transition: all 0.3s;
+}
+
 .container {
   text-align: center;
   font-weight: bold;
@@ -11,13 +30,16 @@ body {
 }
 
 #search-form {
-  font-size: 18px;
-  color: darkblue;
+  font-size: 14px;
+  color: white;
   border-color: darkblue;
 }
 
-h1, h5 {
-  color: darkblue;
+h1 {
+  color: #303030;
+  font-family: "Apple Chancery", cursive;
+  font-size: 48px;
+  text-align: center;
 }
 
 #searching {
@@ -36,7 +58,12 @@ h1, h5 {
   color: red;
 }
 
-#doctor-info {
+#result-section {
+  padding-left: 250px;
+  color: darkblue;
+}
+
+#results {
   display: none;
   color: darkblue;
 }
@@ -57,11 +84,10 @@ h1, h5 {
 .btn-submit {
   border: 2px solid black;
   border-radius: 5px;
-  background-color: darkblue;
-  color: white;
+  background-color: white;
+  color: black;
   font-weight: bold;
   font-size: 24px;
-  font-style: italic;
 }
 
 table {

@@ -2,42 +2,49 @@
 <html>
   <head>
     <title>Furniture Store</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="container">
-      <h1>Doctor Finder</h1>
-      <h5>Enter a value in one of the fields below (only the first criterion entered is used)</h5>
-      <form id="search-form">
-        <label for="searchFirstName">First Name:</label>
-        <input type="text" id="searchFirstName"><br>
-        <label for="searchLastName">Last Name:</label>
-        <input type="text" id="searchLastName"><br>
-        <label for="searchFullName">Full Name:</label>
-        <input type="text" id="searchFullName"><br>
-        <label for="searchIssue">Medical Issue:</label>
-        <input type="text" id="searchIssue"><br>
-        <label for="searchLocation">Location (City, State):</label>
-        <input type="text" id="searchLocation"><br>
-        <label for="searchSpecialty">Select a Specialty:</label>
-        <select id="searchSpecialty" name="searchSpecialty" type="text" value="">
-        </select><br><br>
-        <button class="btn-submit" type="submit">Search</button>
-      </form>
-      <br>
-      <div id="searching">
-        <p>Searching...</p>
-      </div>
-      <div id="nodata">
-        <p>No Data Available</p>
-      </div>
-      <div id="error">
-      </div>
-      <div id="doctor-info">
-        <p>Count: <span id="doctorCount"></span></p>
-      </div>
-      <div id="table-data">
-        <table id="table-rows">
-        </table>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <br><br><br>
+        <h2>Search</h2>
+        <br>
+        <form id="search-form">
+          <label for="searchName">Name:</label><br>
+          <input type="text" id="searchName"><br><br>
+          <label for="searchDescription">Description:</label><br>
+          <input type="text" id="searchDescription"><br><br>
+          <label for="searchType">Type:</label><br>
+          <input type="text" id="searchType"><br><br>
+          <label for="searchColor">Color(s):</label><br>
+          <select id="searchColor" name="searchColor" type="text" value="">
+          </select>
+          <br><br>
+          <label for="searchPriceMin">Minimum Price:</label><br>
+          <input type="number" id="searchPriceMin"><br><br>
+          <label for="searchPriceMax">Maximum Price:</label><br>
+          <input type="number" id="searchPriceMax"><br><br>
+          <button class="btn-submit" type="submit">Search</button>
+        </form>
+      </nav>
+      <div id="result-section">
+        <h1>Ye Olde Furniture Shoppe</h1>
+        <div id="searching">
+          <p>Searching...</p>
+        </div>
+        <div id="nodata">
+          <p>No Data Available</p>
+        </div>
+        <div id="error">
+        </div>
+        <div id="results">
+          <p>Count: <span id="resultCount"></span></p>
+        </div>
+        <div id="table-data">
+          <table id="table-rows">
+          </table>
+        </div>
       </div>
     </div>
   </body>

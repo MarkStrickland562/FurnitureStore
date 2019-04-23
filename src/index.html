@@ -7,29 +7,30 @@
   <body>
     <div class="wrapper">
       <nav id="sidebar">
-        <br><br><br>
+        <br><br><br><br><br>
         <h2>Search</h2>
         <br>
         <form id="search-form">
-          <label for="searchName">Name:</label><br>
-          <input type="text" id="searchName"><br><br>
-          <label for="searchDescription">Description:</label><br>
-          <input type="text" id="searchDescription"><br><br>
-          <label for="searchType">Type:</label><br>
-          <input type="text" id="searchType"><br><br>
-          <label for="searchColor">Color(s):</label><br>
-          <select id="searchColor" name="searchColor" type="text" value="">
-          </select>
-          <br><br>
-          <label for="searchPriceMin">Minimum Price:</label><br>
-          <input name="searchPriceMin" type="text" id="searchPriceMin" value="0"><br><br>
-          <label for="searchPriceMax">Maximum Price:</label><br>
+          <label class="label" for="searchName">Name:</label><br>
+          <input type="text" name="searchName" id="searchName"><br><br>
+          <label class="label" for="searchDescription">Description:</label><br>
+          <input type="text" name="searchDescription" id="searchDescription"><br><br>
+          <p class="label">Types:</p><br>
+          <div id="types">
+          </div><br>
+          <p class="label">Colors:</p>
+          <div id="colors">
+          </div>
+          <br>
+          <label class="label" for="searchPriceMin">Minimum Price:</label><br>
+          <input name="searchPriceMin" type="text" id="searchPriceMin" value="$0"><br><br>
+          <label class="label" for="searchPriceMax">Maximum Price:</label><br>
           <input name="searchPriceMax" type="text" id="searchPriceMax"><br><br>
           <button class="btn-submit" type="submit">Search</button>
         </form>
       </nav>
       <div id="result-section">
-        <h1>Ye Olde Furniture Shoppe</h1>
+        <h1 id="title">Ye Olde Furniture Shoppe</h1>
         <div id="searching">
           <p>Searching...</p>
         </div>

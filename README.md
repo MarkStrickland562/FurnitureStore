@@ -11,10 +11,8 @@
 ----------
 
 ## Description
-This project uses the BetterDoctor API for providing access to a dataset of medical data that will be used for enabling the end-user to search for a list of Doctors in the Seattle area based on a medical issue or name of the doctor or location or specialty. The data returned will include the first name, last name, address, phone number, website and whether or not the doctor is accepting new patients. The list of specialties available will be provided in a dropdown menu. If the API call returns an error, the user will be notified about the error and what the error is. If the search returns no results, the user will be notified accordingly.
-
-Note: This project uses the Mapquest API for getting geocodes and you will need an API key for the search by location
-functionality to work.
+This project uses an API that returns a JSON blob containing information about furniture and provides a user interface for display all records returned from
+that dataset or for performing searches against that dataset based on any combination of Name, Description, Type, Color or a Cost range. If the API call returns an error, the user will be notified about the error and what the error is. If the search returns no results, the user will be notified accordingly.
 
 Note: If your API request is not successful and you receive an "Origin is not allowed by Access-Control-Allow-Origin" error in your console,
 try installing the Allow-Control-Allow-Origin: * Chrome extension at https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en.
@@ -35,18 +33,17 @@ try installing the Allow-Control-Allow-Origin: * Chrome extension at https://chr
     </tr>
     <tr>
       <td>Behavior</td>
-      <td>The application will require that the end-user enter search criteria. If no criteria are entered, the user will be alerted</td>
+      <td>The application will accept optional search criteria from the end-user. Any combination of Name, Description, Type, Color or Price range is valid.</td>
     </tr>
     <tr>
       <td>Input</td>
-      <td>No search criteria</td>
+      <td>Zero or more search criteria</td>
     </tr>
     <tr>
       <td>Output</td>
-      <td>A message indicating that search criteria are required</td>
+      <td>A display of records that meet the search criteria (or all records if no criteria were provided)</td>
     </tr>
   </table>
-
 
   <table>
     <tr>
@@ -55,97 +52,21 @@ try installing the Allow-Control-Allow-Origin: * Chrome extension at https://chr
     </tr>
     <tr>
       <td>Behavior</td>
-      <td>The application will query the BetterDoctor API for a list of doctors based on first or last name</td>
+      <td>If the search returns data, the list of data elements will include an image, name, description, type, one or more colors and the price</td>
     </tr>
     <tr>
       <td>Input</td>
-      <td>Name of a doctor</td>
+      <td>Click on the Submit button</td>
     </tr>
     <tr>
       <td>Output</td>
-      <td>Information about that doctor if it exists</td>
+      <td>Image, name, description, type, one or more colors and the price</td>
     </tr>
   </table>
 
   <table>
     <tr>
       <th>Specification 03</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>Behavior</td>
-      <td>The application will query the BetterDoctor API for a list of doctors based on medical issue</td>
-    </tr>
-    <tr>
-      <td>Input</td>
-      <td>A medical issue</td>
-    </tr>
-    <tr>
-      <td>Output</td>
-      <td>A list of doctors who can treat the medical issue</td>
-    </tr>
-  </table>
-
-  <table>
-    <tr>
-      <th>Specification 04</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>Behavior</td>
-      <td>The application will query the BetterDoctor API for a list of doctors based on location</td>
-    </tr>
-    <tr>
-      <td>Input</td>
-      <td>A location</td>
-    </tr>
-    <tr>
-      <td>Output</td>
-      <td>A list of doctors who are located in that location</td>
-    </tr>
-  </table>
-
-  <table>
-    <tr>
-      <th>Specification 05</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>Behavior</td>
-      <td>The application will query the BetterDoctor API for a list of doctors based on specialty</td>
-    </tr>
-    <tr>
-      <td>Input</td>
-      <td>A location</td>
-    </tr>
-    <tr>
-      <td>Output</td>
-      <td>A list of doctors who have that specialty</td>
-    </tr>
-  </table>
-
-  <table>
-    <tr>
-      <th>Specification 06</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>Behavior</td>
-      <td>If the search returns data, the list of doctors will include first name, last name, phone number, website, and whether the doctor is accepting new patients</td>
-    </tr>
-    <tr>
-      <td>Input</td>
-      <td>Search criteria that will return data</td>
-    </tr>
-    <tr>
-      <td>Output</td>
-      <td>Doctor(s) first name, last name, phone number, website, and if the doctor(s) are accepting new patients</td>
-    </tr>
-  </table>
-
-  <table>
-    <tr>
-      <th>Specification 07</th>
       <th></th>
     </tr>
     <tr>
@@ -164,7 +85,7 @@ try installing the Allow-Control-Allow-Origin: * Chrome extension at https://chr
 
   <table>
     <tr>
-      <th>Specification 08</th>
+      <th>Specification 04</th>
       <th></th>
     </tr>
     <tr>
@@ -177,7 +98,7 @@ try installing the Allow-Control-Allow-Origin: * Chrome extension at https://chr
     </tr>
     <tr>
       <td>Output</td>
-      <td>A message indicating that no doctors were found that meet the search criteria</td>
+      <td>A message indicating that no records were found that meet the search criteria</td>
     </tr>      
   </table>
 </details>
@@ -217,14 +138,14 @@ try installing the Allow-Control-Allow-Origin: * Chrome extension at https://chr
 
 
 #### Download the Repository
-1. Clone [this repository](https://github.com/MarkStrickland562/DoctorLooup):
+1. Clone [this repository](https://github.com/MarkStrickland562/FurnitureStore):
 
-       $ git clone https://github.com/MarkStrickland562/DoctorLookup.git
+       $ git clone https://github.com/MarkStrickland562/FurnitureStore.git
 
 #### Install, build and run the application
 1. Navigate to the application root directory:
 
-       $ cd DoctorLookup
+       $ cd FurnitureStore
 2. Install the required packages:
 
        $ npm install
